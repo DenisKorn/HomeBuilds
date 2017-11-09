@@ -28,6 +28,7 @@ public class main extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update){
         Message message;
+        String testRes;
 
         message = update.getMessage();
 
@@ -36,17 +37,20 @@ public class main extends TelegramLongPollingBot {
         TestClass test = new TestClass();
 
         test.setUp();
+       testRes = test.start();
+        test.close();
 
 
 
-        System.out.println(userText);
-        sendMes(message);
+
+        System.out.println(testRes);
+        sendMes(message, testRes);
 
 
 
     }
 
-    private Message sendMes(Message message) {
+    private Message sendMes(Message message, String testRes) {
         Message messageID = message;
         //  boolean result;
         SendMessage sendMessage = new SendMessage();

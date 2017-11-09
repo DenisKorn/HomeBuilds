@@ -33,16 +33,20 @@ public class TestClass {
    }
 
   @Test
-   public void Start() throws Exception {
+   //public void Start() throws Exception {
+
+  public String start(){
 
       String nececcaryUrl = baseUrl;
       driver.get(nececcaryUrl); //открыли базовый урл
       String data1 = driver.findElement(By.xpath("//div[contains(@class,'labeled')]")).getText();
 
+      return data1;
    }
 
    @After
-   public void tearDown() throws Exception {
+   //public void tearDown() throws Exception {
+   public void close(){
       driver.quit();
       String verificationErrorString = verificationErrors.toString();
       if (!"".equals(verificationErrorString)) {
