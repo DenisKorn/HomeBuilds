@@ -1,10 +1,15 @@
-import org.telegram.telegrambots.*;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.bots.BotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
 
 public class main extends TelegramLongPollingBot {
 
@@ -36,6 +41,24 @@ public class main extends TelegramLongPollingBot {
         String userText = message.getText();
 
         System.out.println(userText);
+        sendMes(message);
 
+    }
+
+    private Message sendMes(Message message) {
+        Message messageID = message;
+        //  boolean result;
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.enableMarkdown(false);
+        sendMessage.setChatId(message.getChatId().toString());
+        sendMessage.setText(message.getText().toString());
+
+        try {
+            messageID = sendMessage(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+
+        }
+        return messageID;
     }
 }
