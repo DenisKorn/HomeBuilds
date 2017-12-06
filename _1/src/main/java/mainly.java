@@ -5,7 +5,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
 
-public class main extends TelegramLongPollingBot {
+/*public class main extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
         // TelegramBot bot = new TelegramBot("369166204:AAFfXhL-blM-T4bJL_nC0h7v0a2yXs9kfeA");
@@ -65,5 +65,27 @@ public class main extends TelegramLongPollingBot {
 
         }
         return messageID;
+    }
+}*/
+class FinDemo{
+    int x;
+    FinDemo(int i){
+        x=i;
+    }
+
+    protected void finalize(){
+        System.out.println("Finalization" + x);
+    }
+    void generator(int i){
+        FinDemo o = new FinDemo(i);
+    }
+}
+class mainly{
+    public static void main (String args[]){
+        int count;
+
+        FinDemo ob = new FinDemo(0);
+        for(count = 1; count < 10000000; count++)
+            ob.generator(count);
     }
 }
